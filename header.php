@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <?php wp_head(); ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">    <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
     <nav class="bg-white shadow">
@@ -19,13 +20,46 @@
         <div class="hidden lg:items-center lg:mr-4 lg:flex lg:gap-2">
           <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
           <?php
-$categories = get_categories();
+          $menu = wp_get_nav_menu_items('main-menu');
+          $submenu_items = [];
+          
+          // Collect submenu items
+          foreach ($menu as $item) {
+              if ($item->menu_item_parent != 0) {
+                  $submenu_items[$item->menu_item_parent][] = $item;
+              }
+          }
+          
+          // Output menu items
+          foreach ($menu as $item) {
+              if ($item->menu_item_parent == 0) {
+                  // Check if the current item has submenu items
+                  $has_submenu = isset($submenu_items[$item->ID]);
+          
+                  echo '<div class="relative inline-block text-right">';
+          
+                  // Output as button only if it has submenu items
+                  if ($has_submenu) {
+                      echo '<button type="button" id="menu-button-' . $item->ID . '" aria-expanded="false" aria-haspopup="true" class="inline-flex w-full justify-center gap-x-1.5 bg-white px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">' . $item->title . '<svg class="-mr-1 h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg></button>';
+                  } else {
+                      echo '<a href="' . $item->url . '" class="inline-flex w-full justify-center gap-x-1.5 bg-white px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">' . $item->title . '</a>';
+                  }
+          
+                  // Output dropdown menu if exists
+                  if ($has_submenu) {
+                      echo '<div id="dropdown-menu-' . $item->ID . '" class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button-' . $item->ID . '" tabindex="-1">';
+                      foreach ($submenu_items[$item->ID] as $submenu_item) {
+                          echo '<a href="' . $submenu_item->url . '" class="text-gray-800 block p-3 text-sm" role="menuitem" tabindex="-1">' . $submenu_item->title . '</a>';
+                      }
+                      echo '</div>';
+                  }
+          
+                  echo '</div>';
+              }
+          }
+          ?>
 
-foreach($categories as $category) {
-    echo '<a class="inline-flex border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 href="' . get_category_link($category->term_id) . '">' . $category->name . '</a><br />';
-}
-?>
-          </div>
+        </div>
       </div>
       <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
         <div class="w-full max-w-lg lg:max-w-xs">
