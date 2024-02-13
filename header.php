@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">    <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?>>
-    <nav class="bg-white shadow">
-  <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+  <body <?php body_class(); ?> class="prose">
+    <nav class="bg-white shadow z-10">
+  <div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-8">
     <div class="flex h-16 justify-between">
       <div class="flex px-2 lg:px-0">
         <div class="flex flex-shrink-0 items-center">
@@ -61,19 +61,11 @@
 
         </div>
       </div>
-      <div class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
-        <div class="w-full max-w-lg lg:max-w-xs">
-          <label for="search" class="sr-only">Search</label>
-          <div class="relative">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <input id="search" name="search" class="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search" type="search">
-          </div>
-        </div>
-      </div>
+      <button class="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
+        <svg class="h-6 w-6 text-gray-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+        </svg>
+      </button>
       <div class="flex items-center lg:hidden">
         <!-- Mobile menu button -->
         <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
