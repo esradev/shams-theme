@@ -1,10 +1,10 @@
 <?php
 
 function boilerplate_load_assets() {
-  wp_enqueue_script('ourmainjs', get_theme_file_uri('/src/index.js'), array('wp-element'), '1.0', true);
-  wp_enqueue_style('ourmaincss', get_theme_file_uri('/build/index.css'));
+  wp_enqueue_script('shamsmainjs', get_theme_file_uri('/src/index.js'), array('wp-element'), '1.1', true);
+  wp_enqueue_style('shamsmaincss', get_theme_file_uri('/build/index.css'));
 
-  wp_localize_script('ourmainjs', 'ourData', array(
+  wp_localize_script('shamsmainjs', 'ourData', array(
     'root_url' => get_site_url()
   ));
 }

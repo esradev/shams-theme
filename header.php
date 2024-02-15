@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="scroll-smooth">
   <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">    <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?> class="prose">
+  <body <?php body_class(); ?> class="prose scroll-smooth">
     <nav class="bg-white shadow z-10">
   <div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-8">
     <div class="flex h-16 justify-between">

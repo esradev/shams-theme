@@ -31,6 +31,7 @@ get_header(); ?>
       <?php }
       }   
     ?>
+    
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 my-6 sm:text-4xl"><?php the_title(); ?></h1>
     <p class="mt-6 text-xl leading-8"><?php echo wp_trim_words(get_the_content(), 40, '...'); ?></p>
     <div class="mt-10 max-w-full prose">

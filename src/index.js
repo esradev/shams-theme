@@ -62,3 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 })
+
+/**
+ * Go to top button
+ * TODO not work!
+ */
+document.getElementById('top').addEventListener('click', function (event) {
+  event.preventDefault()
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+})

@@ -14,11 +14,15 @@ if (is_category()) {
 }
 ?>
 
-  <div class="py-12 mt-2 sm:py-24">
+  <div class="py-10 mt-2 sm:py-16">
   <div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl"><?php echo $page_title; ?></h1>
-      <div class="mt-2 max-w-full text-lg leading-8 text-gray-600"><?php echo $page_description; ?></div>
-      <div class="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
+    <section class="mb-8 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-sm p-6 text-center">
+        <h1 class="text-3xl font-bold mb-4"><?php echo $page_title; ?></h1>
+        <p class="text-lg text-gray-600 prose dark:text-gray-400">
+          <?php echo $page_description; ?>
+        </p>
+    </section>
+      <div class="space-y-16 pt-10">
     <?php
     // Example loop with pagination
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
