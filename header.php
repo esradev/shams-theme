@@ -96,7 +96,7 @@
       </button>
        <!-- Search Overlay -->
       <div id="search-overlay" class="transition scale-125 opacity-0 duration-300 ease-in-out flex justify-center invisible bg-white/90 backdrop-blur-sm fixed inset-0 z-50">
-      <div class="max-w-3xl w-full pt-4 sm:pt-16 px-4 sm:px-0">
+      <div class="max-w-4xl w-full pt-4 sm:pt-16 px-4 sm:px-0">
         <div class="flex justify-end mb-3">
           <svg id="close-overlay-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="text-red-400 hover:text-red-600 cursor-pointer" viewBox="0 0 16 16">
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
@@ -173,5 +173,5 @@
     <li><a class="flex items-center text-sm text-teal-700 hover:text-teal-500" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mr-3" viewBox="0 0 16 16">
   <path d="M4 3.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5z"/>
   <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
-</svg> <span class="title-text">Example Post Result #1</span></a></li>
+</svg> <span class="title-text">نمونه مطلب #1</span></a></li>
     </template>
