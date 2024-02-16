@@ -75,3 +75,10 @@ document.getElementById('top').addEventListener('click', function (event) {
     behavior: 'smooth'
   })
 })
+
+/**
+ * Select order
+ */
+document.getElementById('order').addEventListener('change', function () {
+  document.getElementById('orderForm').submit()
+})

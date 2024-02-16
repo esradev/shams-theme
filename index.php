@@ -12,6 +12,10 @@ if (is_category()) {
     $page_title = '';
     $page_description = '';
 }
+
+// Get the selected order value from the query string
+$order = isset($_GET['order']) ? $_GET['order'] : 'date';
+
 ?>
 
   <div class="py-10 mt-2 sm:py-16">
@@ -31,20 +35,48 @@ if (is_category()) {
       <?php } ?>
         
     </section>
-      <div class="space-y-16 pt-10">
+
+    <!-- Add the select input for post order -->
+    <?php if (is_category()) { ?>
+      <form id="orderForm" method="get">
+        <div class="mb-4">
+          <label for="order" class="block text-base font-medium text-gray-700">ترتیب نمایش جلسات:</label>
+          <select id="order" name="order" class="mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow font-sans focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="date_asc" <?php echo ($order === 'date_asc') ? 'selected' : ''; ?>>از اولین جلسه</option>
+            <option value="date_desc" <?php echo ($order === 'date_desc') ? 'selected' : ''; ?>>از آخرین جلسه</option>
+          </select>
+        </div>
+      </form>
+    <?php } ?>
+
+
+    <div class="space-y-16 pt-10">
     <?php
     // Example loop with pagination
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => 10,
-        'paged' => $paged
+        'paged' => $paged,
+        'orderby' => 'date',
+        'order' => 'ASC'
     );
+
+    // If it's a category page, add the current category to the query
+if (is_category()) {
+    $args['cat'] = get_queried_object_id();
+        if ($order === 'date_desc') {
+        $args['order'] = 'DESC';
+    } elseif ($order === 'date_asc') {
+        $args['order'] = 'ASC';
+    }
+}
+
     
     $query = new WP_Query($args);
-    if (have_posts()) {
-      while(have_posts()) {
-        the_post();
+    if ($query->have_posts()) {
+      while($query->have_posts()) {
+        $query->the_post();
         get_template_part('templates/content', 'blog-post');
       } ?>
 
