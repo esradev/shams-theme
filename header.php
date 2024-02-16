@@ -15,7 +15,10 @@
     <div class="flex h-16 justify-between">
       <div class="flex px-2 lg:px-0">
         <div class="flex flex-shrink-0 items-center">
-          <img class="block h-8 w-auto" src="<?php echo get_site_icon_url(); ?>" alt="شمس المعارف، دروس آیت الله حسینی آملی حفظه الله">
+          <a href="<?php echo home_url(); ?>">
+            <img class="block h-8 w-auto" src="<?php echo get_site_icon_url(); ?>" alt="شمس المعارف، دروس آیت الله حسینی آملی حفظه الله">
+          </a>
+          
         </div>
         <div class="hidden lg:items-center lg:mr-4 lg:flex lg:gap-2">
           <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
@@ -84,11 +87,30 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   <div class="lg:hidden hidden" id="mobile-menu">
     <div class="space-y-1 pb-3 pt-2">
-      <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" -->
-      <a href="#" class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">Dashboard</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Team</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Projects</a>
-      <a href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">Calendar</a>
-    </div>  
+      <?php 
+      foreach ($menu as $item) {
+              if ($item->menu_item_parent == 0) {
+                  // Check if the current item has submenu items
+                  $has_submenu = isset($submenu_items[$item->ID]);
+          
+                  echo '<div class="relative block text-right min-w-full">';
+          
+                  // Output as button only if it has submenu items
+                  echo '<a href="' . $item->url . '" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-bold text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">' . $item->title . '</a>';
+                  
+          
+                 // Output dropdown menu if exists for mobile
+                  if ($has_submenu) {
+                      echo '<div id="dropdown-menu-' . $item->ID . '" class="text-gray-800 block p-3 text-lg mr-2"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button-' . $item->ID . '" tabindex="-1">';
+                      foreach ($submenu_items[$item->ID] as $submenu_item) {
+                          echo '<a href="' . $submenu_item->url . '" class="text-gray-800 block p-3 text-lg" role="menuitem" tabindex="-1">' . $submenu_item->title . '</a>';
+                      }
+                  }
+          
+                  echo '</div>';
+              }
+          }
+          ?>
+     </div>  
   </div>
 </nav>

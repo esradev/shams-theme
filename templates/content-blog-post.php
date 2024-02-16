@@ -4,7 +4,7 @@ $date_of_the_lesson = get_post_meta($post_id, 'date-of-the-lesson', true);
 $the_audio_of_the_lesson = get_post_meta($post_id, 'the-audio-of-the-lesson', true);
 $the_main_text_of_the_lesson = get_post_meta($post_id, 'the-main-text-of-the-lesson', true);
 ?>
- <article class="flex flex-col ">
+ <article class="flex flex-col min-w-full">
   <div class="flex items-center gap-x-2 text-xs">
     <time datetime="2020-03-16" class="text-gray-500"><?php echo $date_of_the_lesson; ?></time>
     <span aria-hidden="true" class="text-gray-500">•</span>
@@ -18,14 +18,19 @@ $the_main_text_of_the_lesson = get_post_meta($post_id, 'the-main-text-of-the-les
     ?>
 
   </div>
-  <div class="group relative">
+  <div class="group relative min-w-full">
     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
       <a href="<?php the_permalink(); ?>">
         <span class="absolute inset-0"></span>
         <?php the_title(); ?>
       </a>
     </h3>
-    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 prose"><?php echo wp_trim_words(get_the_content(), 40, '...'); ?></p>
+    <?php 
+      if (get_the_content() !== '') { ?>
+          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 prose min-w-full"><?php echo wp_trim_words(get_the_content(), 40, '...'); ?></p>
+      <?php } else { ?>
+          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 prose min-w-full">متن کامل این جلسه هنوز آماده نشده است، اما صوت جلسه قابل دانلود و استماع می باشد.</p>
+      <?php } ?>
   </div>
   <div class="mt-6 flex gap-2 ">
     <div class="flex-shrink-0">

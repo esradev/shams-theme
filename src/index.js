@@ -9,12 +9,12 @@ const mobileMenuOpenIcon = document.querySelector('#mobile-menu-open-icon')
 mobileMenuButton.addEventListener('click', () => {
   if (mobileMenu.classList.contains('hidden')) {
     mobileMenu.classList.remove('hidden')
-    mobileMenuOpenIcon.style.display = 'block'
-    mobileMenuCloseIcon.style.display = 'none'
-  } else {
-    mobileMenu.classList.add('hidden')
     mobileMenuOpenIcon.style.display = 'none'
     mobileMenuCloseIcon.style.display = 'block'
+  } else {
+    mobileMenu.classList.add('hidden')
+    mobileMenuOpenIcon.style.display = 'block'
+    mobileMenuCloseIcon.style.display = 'none'
   }
 })
 
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Add click event listener to each button
   buttons.forEach(function (button) {
     button.addEventListener('click', function (event) {
+      console.log('click')
       // Close all open dropdown menus
       closeAllDropdowns()
 
