@@ -1,7 +1,7 @@
 <footer class="bg-white" aria-labelledby="footer-heading">
   <h2 id="footer-heading" class="sr-only">پابرگ</h2>
   <div class="max-w-4xl mx-auto px-4 pb-8">
-    <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+    <!-- <div class="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
       <div>
         <h3 class="text-sm font-semibold leading-6 text-gray-900">عضویت در خبرنامه</h3>
         <p class="mt-2 text-sm leading-6 text-gray-600">برای اطلاع از جدیدترین دروس بارگذاری شده در سایت شماره موبایل خود را ثبت کنید</p>
@@ -13,10 +13,10 @@
           <button type="submit" class="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 mr-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">عضویت در خبرنامه</button>
         </div>
       </form>
-    </div>
+    </div> -->
     <div class="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
       <div class="flex gap-8 md:order-2">
-        <a href="#" class="text-gray-400 text-xs hover:text-gray-500">
+        <a href="https://eitaa.com/ostadhosseinyamoli" class="text-gray-400 text-xs hover:text-gray-500">
           کانال دروس در ایتا
         </a>
         
