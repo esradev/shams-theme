@@ -29,7 +29,7 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'date';
       </p>
       <?php } else { ?>
       <h1 class="text-3xl font-bold mb-4">آیت الله حسینی آملی حفظه الله</h1>
-      <p class="text-lg text-gray-600 mix-w-full">
+      <p class="text-lg text-gray-600 max-w-full">
         تمامی دروس آیت الله سید محمدرضا حسینی آملی حفظه الله در این سایت بارگذاری خواهد شد.
       </p>
       <?php } ?>
