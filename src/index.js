@@ -179,3 +179,118 @@ async function getResultsData(term) {
   const results = await resultsPromise.json()
   return results
 }
+
+/**
+ * Audio player
+ */
+
+// get post id
+const bodyClasses = document.body.className.split(' ')
+const postId = bodyClasses.find(className => className.startsWith('postid-')).split('-')[1]
+
+// get next and previous post
+const posts = JSON.parse(ourData.posts)
+const nextPost = posts.find(post => post.id == postId + 1)
+const prevPost = posts.find(post => post.id == postId - 1)
+
+const audioPlayer = document.querySelector('#audio-player')
+const playButton = document.querySelector('#play-button')
+const pauseButton = document.querySelector('#pause-button')
+const audio = document.querySelector('#audio')
+const audioTitle = document.querySelector('#audio-title')
+const audioArtist = document.querySelector('#audio-artist')
+const audioCover = document.querySelector('#audio-cover')
+const audioProgress = document.querySelector('#audio-progress')
+const audioProgressContainer = document.querySelector('#audio-progress-container')
+const audioCurrentTime = document.querySelector('#audio-current-time')
+const audioDuration = document.querySelector('#audio-duration')
+
+let isPlaying = false
+let currentSongIndex = postId
+let audioSrc = ''
+
+async function fetchSongs() {
+  const songsPromise = await fetch(ourData.root_url + `/wp-json/wp/v2/posts/${postId}`)
+  const postData = await songsPromise.json()
+  loadSong(postData)
+}
+
+function loadSong(post) {
+  audio.src = post.meta['the-audio-of-the-lesson']
+  audioProgress.style.width = '0' // Reset progress bar
+}
+
+function playSong() {
+  isPlaying = true
+  audioPlayer.classList.add('playing')
+  playButton.classList.add('hidden')
+  pauseButton.classList.remove('hidden')
+  audio.play()
+}
+
+function pauseSong() {
+  isPlaying = false
+  audioPlayer.classList.remove('playing')
+  playButton.classList.remove('hidden')
+  pauseButton.classList.add('hidden')
+  audio.pause()
+}
+
+function updateProgress(e) {
+  const {duration, currentTime} = e.srcElement
+  const progressPercent = (currentTime / duration) * 100
+  audioProgress.style.width = `${progressPercent}%`
+  const durationMinutes = Math.floor(duration / 60)
+  let durationSeconds = Math.floor(duration % 60)
+  if (durationSeconds < 10) {
+    durationSeconds = `0${durationSeconds}`
+  }
+  if (durationSeconds) {
+    audioDuration.textContent = `${durationMinutes}:${durationSeconds}`
+  }
+  const currentTimeMinutes = Math.floor(currentTime / 60)
+  let currentTimeSeconds = Math.floor(currentTime % 60)
+  if (currentTimeSeconds < 10) {
+    currentTimeSeconds = `0${currentTimeSeconds}`
+  }
+  audioCurrentTime.textContent = `${currentTimeMinutes}:${currentTimeSeconds}`
+}
+
+function setProgress(e) {
+  const width = this.clientWidth
+  const clickX = e.offsetX
+  const duration = audio.duration
+  audio.currentTime = duration - (clickX / width) * duration
+}
+
+// Event listeners
+playButton.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()))
+pauseButton.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()))
+audio.addEventListener('timeupdate', updateProgress)
+audioProgressContainer.addEventListener('click', setProgress)
+audio.addEventListener('loadedmetadata', () => {
+  const duration = audio.duration
+  const durationMinutes = Math.floor(duration / 60)
+  let durationSeconds = Math.floor(duration % 60)
+  if (durationSeconds < 10) {
+    durationSeconds = `0${durationSeconds}`
+  }
+  audioDuration.textContent = `${durationMinutes}:${durationSeconds}`
+})
+
+// Show loading effect when the audio is waiting for data
+audio.addEventListener('waiting', () => {
+  document.getElementById('audio-loading').classList.remove('hidden')
+})
+
+// Hide loading effect when the audio starts playing
+audio.addEventListener('playing', () => {
+  document.getElementById('audio-loading').classList.add('hidden')
+})
+
+// Hide loading effect when the audio ends
+audio.addEventListener('ended', () => {
+  document.getElementById('audio-loading').classList.add('hidden')
+})
+
+fetchSongs()
