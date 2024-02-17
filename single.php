@@ -36,7 +36,7 @@ get_header(); ?>
 
       <div id="audio-player" class="bg-gray-800 text-white p-4 my-10 rounded-xl shadow">
         <div class="flex flex-col md:flex-row items-center justify-between">
-          <div id="audio-info" class="flex items-center mb-4 md:mb-0">
+          <div id="audio-info" class="flex items-center">
             <img id="audio-cover" src="<?php echo get_template_directory_uri() . '/assets/images/photo-150.jpg' ?>"
               alt="Cover" class="w-20 h-20 object-cover ml-4 rounded-full">
             <div class="ml-4">
@@ -44,73 +44,87 @@ get_header(); ?>
               <p id="audio-artist" class="text-sm">آیت الله حسینی آملی (حفظه الله)</p>
             </div>
           </div>
-          <div id="audio-controls" class="flex items-center justify-center md:justify-start">
-            <button id="audio-next" class="mr-4">
-              <span class="text-white">بعدی</span>
-              <a href="<?php echo get_permalink(get_adjacent_post(true, '', false)); ?>" class="text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
-                  <path
-                    d="M4.79 5.093A.5.5 0 0 0 4 5.5v5a.5.5 0 0 0 .79.407L7.5 8.972V10.5a.5.5 0 0 0 .79.407L11 8.972V10.5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-1 0v1.528L8.29 5.093a.5.5 0 0 0-.79.407v1.528z" />
-                  <path
-                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+          <div id="audio-controls" class="flex flex-col items-center justify-center md:justify-start">
+            <div class="flex items-center justify-center md:justify-start">
+              <!-- <div class="w-20 ml-12">
+                <input id="volume" type="range" min="0" max="100" value="100" class="slider">
+              </div> -->
+              <button id="audio-prev" class="mr-4">
+                <a href="<?php echo get_permalink(get_adjacent_post(true, '', true)); ?>" class="text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+                  </svg>
+                </a>
+              </button>
+
+              <button id="play-button" class="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-8 h-8">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                 </svg>
-              </a>
 
-            </button>
-
-            <button id="play-button" class="mr-4">
-              <span class="text-white">پخش</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-play-btn"
-                viewBox="0 0 16 16">
-                <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" />
-                <path
-                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
-              </svg>
-            </button>
-            <button id="pause-button" class="hidden mr-4">
-              <span class="text-white">توقف</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pause-btn"
-                viewBox="0 0 16 16">
-                <path
-                  d="M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5" />
-                <path
-                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
-              </svg>
-            </button>
-
-            <button id="audio-prev" class="mr-4">
-              <span class="text-white">قبلی</span>
-              <a href="<?php echo get_permalink(get_adjacent_post(true, '', true)); ?>" class="text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                  class="bi bi-skip-backward-btn" viewBox="0 0 16 16">
-                  <path
-                    d="M11.21 5.093A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8.5 8.972V10.5a.5.5 0 0 1-.79.407L5 8.972V10.5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 1 0v1.528l2.71-1.935a.5.5 0 0 1 .79.407v1.528z" />
-                  <path
-                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+              </button>
+              <button id="pause-button" class="hidden mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-8 h-8">
+                  <path stroreke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                 </svg>
-              </a>
-            </button>
+              </button>
+              <button id="audio-next" class="mr-4">
+                <a href="<?php echo get_permalink(get_adjacent_post(true, '', false)); ?>" class="text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
+                  </svg>
+                </a>
+              </button>
 
-            <button class="mr-4">
-              <span class="text-white
-              ">دانلود</span>
-              <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" class="text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                  class="bi bi-download" viewBox="0 0 16 16">
-                  <path
-                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+
+            </div>
+            <div class="flex items-center justify-center md:justify-start">
+              <button id="fast-rewind" class="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-8 h-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3" />
                 </svg>
-              </a>
-            </button>
+
+              </button>
+              <button id="fast-forward" class="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-8 h-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                </svg>
+
+              </button>
+
+              <select id="play-speed" class="mr-4 bg-gray-800 text-white border-none rounded-md px-4 py-2 outline-none">
+                <option value="0.5" class="bg-gray-800 text-white">0.5x</option>
+                <option value="1" selected class="bg-gray-800 text-white">1x</option>
+                <option value="1.5" class="bg-gray-800 text-white">1.5x</option>
+                <option value="2" class="bg-gray-800 text-white">2x</option>
+              </select>
+              <button class="mr-4">
+                <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" class="text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                  </svg>
+
+                </a>
+              </button>
+            </div>
           </div>
         </div>
         <div class="flex justify-between text-sm mt-2">
           <span id="audio-current-time">00:00</span>
           <span id="audio-duration">00:00</span>
         </div>
-        <div id="audio-progress-container" class="h-2 bg-gray-600 rounded mt-4 cursor-pointer">
+        <div id="audio-progress-container" class="h-2 bg-gray-600 rounded mt-1 cursor-pointer">
           <div id="audio-progress" class="h-2 bg-emerald-600 rounded" style="width: 0;"></div>
           <div id="audio-loading" class="h-2 w-full -mt-2 rounded hidden"></div>
         </div>

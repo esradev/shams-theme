@@ -204,6 +204,7 @@ const audioProgress = document.querySelector('#audio-progress')
 const audioProgressContainer = document.querySelector('#audio-progress-container')
 const audioCurrentTime = document.querySelector('#audio-current-time')
 const audioDuration = document.querySelector('#audio-duration')
+const audioLoading = document.getElementById('audio-loading')
 
 let isPlaying = false
 let currentSongIndex = postId
@@ -278,19 +279,33 @@ audio.addEventListener('loadedmetadata', () => {
   audioDuration.textContent = `${durationMinutes}:${durationSeconds}`
 })
 
-// Show loading effect when the audio is waiting for data
+// Show or Hide loading effect when the audio is waiting for data or playing
 audio.addEventListener('waiting', () => {
-  document.getElementById('audio-loading').classList.remove('hidden')
+  audioLoading.classList.remove('hidden')
 })
-
-// Hide loading effect when the audio starts playing
 audio.addEventListener('playing', () => {
-  document.getElementById('audio-loading').classList.add('hidden')
+  audioLoading.classList.add('hidden')
+})
+audio.addEventListener('ended', () => {
+  audioLoading.classList.add('hidden')
 })
 
-// Hide loading effect when the audio ends
-audio.addEventListener('ended', () => {
-  document.getElementById('audio-loading').classList.add('hidden')
+// add fast forward and rewind
+document.getElementById('fast-rewind').addEventListener('click', () => {
+  audio.currentTime -= 10
+})
+document.getElementById('fast-forward').addEventListener('click', () => {
+  audio.currentTime += 10
+})
+
+// add volume control
+// document.getElementById('volume').addEventListener('change', function () {
+//   audio.volume = this.value / 100
+// })
+
+// add play speed control
+document.getElementById('play-speed').addEventListener('change', function () {
+  audio.playbackRate = this.value
 })
 
 fetchSongs()
