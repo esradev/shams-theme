@@ -24,12 +24,12 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'date';
       <?php
       if ($page_title !== '') { ?>
       <h1 class="text-3xl font-bold mb-4"><?php echo $page_title; ?></h1>
-      <p class="text-lg text-gray-600 prose dark:text-gray-400">
+      <p class="text-lg text-gray-600 prose">
         <?php echo $page_description; ?>
       </p>
       <?php } else { ?>
       <h1 class="text-3xl font-bold mb-4">آیت الله حسینی آملی حفظه الله</h1>
-      <p class="text-lg text-gray-600 mix-w-full dark:text-gray-400">
+      <p class="text-lg text-gray-600 mix-w-full">
         تمامی دروس آیت الله سید محمدرضا حسینی آملی حفظه الله در این سایت بارگذاری خواهد شد.
       </p>
       <?php } ?>

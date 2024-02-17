@@ -4,6 +4,7 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16a34a" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,7 +109,7 @@
         <!-- Search Overlay -->
         <div id="search-overlay"
           class="transition scale-125 opacity-0 duration-300 ease-in-out flex justify-center invisible bg-white/90 backdrop-blur-sm fixed inset-0 z-50">
-          <div class="max-w-4xl w-full pt-4 sm:pt-16 px-4 sm:px-0">
+          <div class="max-w-4xl w-full pt-4 sm:pt-16 px-4 sm:px-0 overflow-x-hidden">
             <div class="flex justify-end mb-3">
               <svg id="close-overlay-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
                 class="text-red-400 hover:text-red-600 cursor-pointer" viewBox="0 0 16 16">
