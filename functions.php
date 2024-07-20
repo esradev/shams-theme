@@ -1,5 +1,7 @@
 <?php
 
+require_once get_template_directory() . '/inc/helpers.php';
+
 function boilerplate_load_assets()
 {
   $posts = get_posts(array(

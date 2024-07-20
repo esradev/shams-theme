@@ -19,20 +19,20 @@
         <a href="https://eitaa.com/ostadhosseinyamoli" class="text-gray-400 text-xs hover:text-gray-500">
           کانال دروس در ایتا
         </a>
-        
+
       </div>
-      <p class="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">&copy; 1445 سایت توسط جمعی از شاگردان <a href='/'>آیت الله حسینی آملی حفظه الله</a> مدیریت می شود.</p>
+      <p class="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">&copy; 1445 سایت توسط جمعی از شاگردان <a
+          href='/'>آیت الله حسینی آملی حفظه الله</a> مدیریت می شود.</p>
     </div>
   </div>
 
-  <a id="top" href="#" class="fixed bottom-4 right-4 z-[1000] text-indigo-500">
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
-    </svg>    
+  <a id="top" class="fixed bottom-4 left-4 z-[1000] bg-indigo-100 p-2 rounded-full shadow-lg scroll-smooth">
+    <?php echo get_svg_icon('arrow-up', '', 'h-6 w-6 text-indigo-700'); ?>
   </a>
 
 </footer>
 
 <?php wp_footer(); ?>
 </body>
+
 </html>

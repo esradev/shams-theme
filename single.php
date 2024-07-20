@@ -8,7 +8,7 @@ get_header(); ?>
     while (have_posts()) {
       the_post(); ?>
 
-  <div class="py-32 px-2 sm:px-4 lg:px-8">
+  <div class="py-12 px-2 sm:px-4 lg:px-8">
     <div class="mx-auto max-w-4xl text-base leading-7 text-gray-700">
       <?php
           $post_categories = get_the_category();
@@ -51,35 +51,19 @@ get_header(); ?>
               </div> -->
               <button id="audio-prev" class="mr-4">
                 <a href="<?php echo get_permalink(get_adjacent_post(true, '', true)); ?>" class="text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-8 h-8">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
-                  </svg>
+                  <?php echo get_svg_icon('forward', '', 'h-8 w-8'); ?>
                 </a>
               </button>
 
               <button id="play-button" class="mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-8 h-8">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-                </svg>
-
+                <?php echo get_svg_icon('play-circle', '', 'h-8 w-8'); ?>
               </button>
               <button id="pause-button" class="hidden mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-8 h-8">
-                  <path stroreke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-                </svg>
+                <?php echo get_svg_icon('pause-circle', '', 'h-8 w-8'); ?>
               </button>
               <button id="audio-next" class="mr-4">
                 <a href="<?php echo get_permalink(get_adjacent_post(true, '', false)); ?>" class="text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-8 h-8">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061A1.125 1.125 0 0 1 21 8.689v8.122ZM11.25 16.811c0 .864-.933 1.406-1.683.977l-7.108-4.061a1.125 1.125 0 0 1 0-1.954l7.108-4.061a1.125 1.125 0 0 1 1.683.977v8.122Z" />
-                  </svg>
+                  <?php echo get_svg_icon('backward', '', 'h-8 w-8'); ?>
                 </a>
               </button>
 
@@ -87,18 +71,10 @@ get_header(); ?>
             </div>
             <div class="flex items-center justify-center md:justify-start">
               <button id="fast-rewind" class="mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-8 h-8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3" />
-                </svg>
-
+                <?php echo get_svg_icon('arrow-uturn-right', '', 'h-7 w-7'); ?>
               </button>
               <button id="fast-forward" class="mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-8 h-8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-                </svg>
-
+                <?php echo get_svg_icon('arrow-uturn-left', '', 'h-7 w-7'); ?>
               </button>
 
               <select id="play-speed" class="mr-4 bg-gray-800 text-white border-none rounded-md px-4 py-2 outline-none">
@@ -109,12 +85,7 @@ get_header(); ?>
               </select>
               <button class="mr-4">
                 <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" class="text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-8 h-8">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="m9 13.5 3 3m0 0 3-3m-3 3v-6m1.06-4.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
-                  </svg>
-
+                  <?php echo get_svg_icon('folder-arrow-down', '', 'h-7 w-7'); ?>
                 </a>
               </button>
             </div>

@@ -20,10 +20,10 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'date';
 
 <div class="py-10 mt-2 sm:py-16">
   <div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-8">
-    <section class="mb-8 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-sm p-6 text-center">
+    <section class="mb-8 bg-gray-100 rounded-lg shadow-sm p-6 text-center">
       <?php
       if ($page_title !== '') { ?>
-      <h1 class="text-3xl font-bold mb-4"><?php echo $page_title; ?></h1>
+      <h1 class="text-3xl font-bold mb-4 font-sans"><?php echo $page_title; ?></h1>
       <p class="text-lg text-gray-600 prose">
         <?php echo $page_description; ?>
       </p>
