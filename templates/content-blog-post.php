@@ -29,7 +29,13 @@ $the_main_text_of_the_lesson = get_post_meta($post_id, 'the-main-text-of-the-les
     <?php 
       if (get_the_content() !== '') { ?>
     <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 prose min-w-full">
-      <?php echo wp_trim_words(get_the_content(), 40, '...'); ?></p>
+      <?php
+        if (has_excerpt()) {
+          echo get_the_excerpt();
+        } else {
+          echo wp_trim_words(get_the_content(), 55, '...');
+        }
+      ?></p>
     <?php } else { ?>
     <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 prose min-w-full">متن کامل این جلسه هنوز آماده نشده است،
       اما صوت جلسه قابل دریافت و استماع می باشد.</p>
