@@ -14,6 +14,7 @@
         "build",
         "inc",
         "plugin-update-checker",
+        "src",
         "templates",
         "footer.php",
         "functions.php",
