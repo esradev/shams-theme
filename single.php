@@ -51,6 +51,17 @@
           $the_audio_of_the_lesson = get_post_meta($post_id, 'the-audio-of-the-lesson', true);
       ?>
 
+      <!-- NEW: Page-level Audio Download Button -->
+      <?php if ($the_audio_of_the_lesson): ?>
+      <div class="mt-6 flex justify-start">
+        <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" 
+           class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 text-sm font-bold rounded-xl shadow-sm transition-all duration-200">
+          <?php echo get_svg_icon('folder-arrow-down', '', 'h-5 w-5'); ?>
+          دریافت فایل صوتی جلسه
+        </a>
+      </div>
+      <?php endif; ?>
+
       <!-- Modernized Content Area -->
       <div class="mt-12 max-w-full prose prose-emerald prose-lg text-gray-700 leading-loose">
         <?php the_content(); ?>
@@ -100,7 +111,7 @@
           </div>
 
           <!-- Changed to flex-row ALWAYS so it never stacks on mobile -->
-          <div class="p-2 sm:p-4 flex flex-row items-center justify-between gap-2 relative z-10">
+          <div class="p-2 sm:p-4 flex flex-row items-center justify-between gap-1 sm:gap-2 relative z-10">
             
             <!-- Track Info & Cover (min-w-0 forces truncation to work on mobile) -->
             <div id="audio-info" class="flex items-center flex-1 min-w-0">
@@ -124,7 +135,7 @@
             </div>
             
             <!-- Audio Controls (Shrink-0 prevents buttons from getting squished) -->
-            <div id="audio-controls" class="flex items-center shrink-0 gap-1 sm:gap-4">
+            <div id="audio-controls" class="flex items-center shrink-0 gap-0.5 sm:gap-4">
 
               <!-- Skip Prev/Next (Desktop Only) -->
               <div class="hidden sm:flex items-center gap-1">
@@ -160,9 +171,9 @@
                 </button>
               </div>
 
-              <!-- Extra Features (Hidden on Mobile to save space) -->
-              <div class="hidden sm:flex items-center gap-2">
-                <select id="play-speed" class="bg-emerald-900/50 text-emerald-100 border border-emerald-700/50 rounded-lg px-2 py-1 outline-none text-xs focus:border-emerald-500 transition-colors cursor-pointer appearance-none text-center">
+              <!-- Extra Features: Speed (Desktop only), Download (Everywhere!) -->
+              <div class="flex items-center gap-1 sm:gap-2 border-r border-emerald-800/50 pr-1 sm:pr-2 ml-1 sm:ml-0">
+                <select id="play-speed" class="hidden sm:block bg-emerald-900/50 text-emerald-100 border border-emerald-700/50 rounded-lg px-2 py-1 outline-none text-xs focus:border-emerald-500 transition-colors cursor-pointer appearance-none text-center">
                   <option value="0.5">0.5x</option>
                   <option value="1" selected>1x</option>
                   <option value="1.5">1.5x</option>
@@ -170,8 +181,8 @@
                 </select>
                 
                 <?php if ($the_audio_of_the_lesson): ?>
-                <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" class="p-2 text-emerald-100/80 hover:text-white hover:bg-emerald-800/50 rounded-full transition-colors" title="دریافت صوت">
-                  <?php echo get_svg_icon('folder-arrow-down', '', 'h-6 w-6'); ?>
+                <a href="<?php echo $the_audio_of_the_lesson; ?>" download="lesson-audio.mp3" class="p-1.5 sm:p-2 text-emerald-100/80 hover:text-white hover:bg-emerald-800/50 rounded-full transition-colors" title="دریافت صوت">
+                  <?php echo get_svg_icon('folder-arrow-down', '', 'h-5 w-5 sm:h-6 sm:w-6'); ?>
                 </a>
                 <?php endif; ?>
               </div>
