@@ -17,7 +17,6 @@
     
     <div class="mt-8 border-t border-emerald-50 pt-8 md:flex md:items-center md:justify-between">
       <div class="flex gap-8 md:order-2">
-        <!-- Upgraded the Eitaa link to look like a soft modern academic "pill/badge" -->
         <a href="https://eitaa.com/ostadhosseinyamoli" class="inline-flex items-center text-emerald-700 text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 px-4 py-2 rounded-xl transition-colors duration-200">
           کانال دروس در ایتا
         </a>
@@ -27,8 +26,8 @@
     </div>
   </div>
 
-  <!-- Modernized Back to Top button with glass/floating effect and nice hover animation -->
-  <a id="top" class="fixed bottom-6 left-6 z-[1000] bg-white border border-emerald-50 p-3 rounded-2xl shadow-xl shadow-emerald-900/10 hover:-translate-y-1 hover:bg-emerald-50 cursor-pointer transition-all duration-300 scroll-smooth flex items-center justify-center">
+  <!-- FIXED: Changed to bottom-24 on mobile so it floats completely above the sticky audio player! -->
+  <a id="top" class="fixed bottom-24 sm:bottom-8 left-4 sm:left-6 z-[100] bg-white border border-emerald-50 p-3 rounded-2xl shadow-xl shadow-emerald-900/10 hover:-translate-y-1 hover:bg-emerald-50 cursor-pointer transition-all duration-300 scroll-smooth flex items-center justify-center">
     <?php echo get_svg_icon('arrow-up', '', 'h-6 w-6 text-emerald-600'); ?>
   </a>
 

@@ -136,9 +136,7 @@
 
             echo '<div class="relative block text-right min-w-full">';
 
-            // Replaced raw borders with clean rounded box approach for soft modern UI
             echo '<a href="' . $item->url . '" class="block rounded-xl mx-2 my-1 py-3 px-4 text-base font-semibold text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">' . $item->title . '</a>';
-
 
             // Output dropdown menu if exists for mobile
             if ($has_submenu) {
@@ -157,48 +155,77 @@
     </div>
   </nav>
 
-  <!-- Search Overlay Moved OUTSIDE the <nav> element to fix screen display issue -->
+  <!-- UX Improved Minimalistic Search Modal -->
+  <!-- Dimmed the background more (bg-slate-900/30) to increase focus on the search box -->
   <div id="search-overlay"
-    class="transition scale-110 opacity-0 duration-300 ease-in-out flex justify-center invisible bg-slate-50/95 backdrop-blur-md fixed inset-0 z-[100]">
-    <div class="max-w-3xl w-full pt-4 sm:pt-24 px-4 sm:px-0 overflow-x-hidden">
-      <div class="flex justify-end mb-4">
-        <?php echo get_svg_icon('x-circle', 'close-overlay-icon', 'text-gray-400 hover:text-emerald-600 bg-white rounded-full shadow-sm cursor-pointer h-10 w-10 transition-colors'); ?>
-      </div>
-      <!-- Search bar shapes made round and soft -->
-      <div class="flex justify-between bg-white border-emerald-100 border shadow-xl shadow-emerald-900/5 rounded-2xl overflow-hidden">
-        <input id="search-field" placeholder="عبارت مد نظر خود را جستجو کنید..." type="text"
-                                                  class="flex-1 text-xl text-gray-700 placeholder-gray-400 py-5 px-6 outline-none bg-transparent">
-        <div class="flex items-center bg-emerald-600 hover:bg-emerald-700 transition-colors cursor-pointer px-6">
-          <?php echo get_svg_icon('search', '', 'h-7 w-7 text-white'); ?>
+    class="transition scale-110 opacity-0 duration-300 ease-in-out flex justify-center invisible bg-slate-900/30 backdrop-blur-sm fixed inset-0 z-[100]">
+    
+    <div class="max-w-2xl w-full pt-4 sm:pt-20 px-4 sm:px-0">
+      
+      <!-- Unified Single Card -->
+      <div class="bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden max-h-[85vh]">
+        
+        <!-- Search Header (Input + Icons) -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          
+          <div class="flex items-center flex-1 gap-4">
+            <!-- Sleek inline search icon -->
+            <div class="text-emerald-500 shrink-0">
+              <?php echo get_svg_icon('search', '', 'h-6 w-6'); ?>
+            </div>
+            
+            <input id="search-field" placeholder="جستجوی دروس، موضوعات و..." type="text"
+              class="flex-1 text-lg sm:text-xl text-gray-800 placeholder-gray-400 outline-none bg-transparent py-2 w-full">
+          </div>
+
+          <!-- Close button integrated gracefully on the side -->
+          <div class="shrink-0 mr-4">
+            <button class="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors duration-200">
+              <?php echo get_svg_icon('x-circle', 'close-overlay-icon', 'h-7 w-7'); ?>
+            </button>
+          </div>
+          
         </div>
-      </div>
 
-      <!-- Soft rounded search results box -->
-      <div class="mt-8 py-8 px-8 bg-white border border-emerald-50 shadow-xl shadow-emerald-900/5 rounded-3xl">
-        <p id="default-message" class="text-gray-400 text-lg p-5 text-center">نتایج در این جا نشان داده می شوند.
-        </p>
+        <!-- Search Results Area -->
+        <div class="overflow-y-auto p-4 sm:p-6 bg-slate-50/50">
+          
+          <p id="default-message" class="text-gray-400 text-sm sm:text-base p-8 text-center">
+            عبارت مورد نظر خود را تایپ کنید تا نتایج فورا نمایش داده شوند.
+          </p>
 
-        <p id="no-results-message" class="hidden text-amber-600 items-center justify-center">
-          <?php echo get_svg_icon('exclamation-triangle', '', 'h-6 w-6 text-amber-500 inline-block ml-2'); ?>
-          <span>نتیجه ای مرتبط با جستجوی شما یافت نشد.</span>
-        </p>
+          <div id="no-results-message" class="hidden flex-col items-center justify-center p-8 text-center">
+            <?php echo get_svg_icon('exclamation-triangle', '', 'h-10 w-10 text-amber-300 mb-3'); ?>
+            <p class="text-gray-500 font-medium">نتیجه ای مرتبط با جستجوی شما یافت نشد.</p>
+          </div>
 
-        <div id="loading-icon" class="hidden text-center text-emerald-500">
-          <?php echo get_svg_icon('arrow-path', '', 'inline-block animate-spin h-8 w-8 text-emerald-500'); ?>
+          <div id="loading-icon" class="hidden flex justify-center p-8">
+            <?php echo get_svg_icon('arrow-path', '', 'animate-spin h-8 w-8 text-emerald-500'); ?>
+          </div>
+
+          <ul id="results-area" class="hidden space-y-1">
+          </ul>
+
         </div>
-
-        <ul id="results-area" class="hidden space-y-2">
-        </ul>
       </div>
 
     </div>
   </div>
 
+  <!-- Sleek, Minimalistic List Item Template for Search Results -->
   <template id="li-template">
-    <li class="flex flex-col">
-      <a class="flex items-center text-base text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 p-3 rounded-xl transition-colors" href="#">
-        <?php echo get_svg_icon('document-text', '', 'h-5 w-5 text-emerald-500 ml-3'); ?>
-        <span class="title-text font-medium">نمونه مطلب #1</span>
+    <li>
+      <a class="group flex items-center justify-between p-3 sm:p-4 rounded-xl hover:bg-white hover:shadow-sm hover:shadow-emerald-900/5 transition-all duration-200 border border-transparent hover:border-emerald-50" href="#">
+        <div class="flex items-center gap-3">
+          <div class="p-2 bg-emerald-50 text-emerald-500 rounded-lg group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-200 shrink-0">
+            <?php echo get_svg_icon('document-text', '', 'h-5 w-5'); ?>
+          </div>
+          <span class="title-text font-bold text-gray-700 group-hover:text-emerald-800 transition-colors text-sm sm:text-base line-clamp-1">نمونه مطلب #1</span>
+        </div>
+        
+        <span class="text-gray-300 group-hover:text-emerald-600 transition-colors shrink-0 mr-4">
+          <?php echo get_svg_icon('arrow-left', '', 'h-5 w-5'); ?>
+        </span>
       </a>
     </li>
   </template>
